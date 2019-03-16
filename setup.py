@@ -1,25 +1,20 @@
 from setuptools import setup
 from os import path
 
-
-here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
-
-
-packages = ['mdbsession']
-
+with open("Readme.md", "r") as fh:
+    long_description = fh.read()
 
 setup(
     name='django-mdbsessions',
-    version='0.0.1',
-    packages=packages,
-    description='Use MongoDB as Django session backend',
-    long_description=long_description,
+    version='0.0.2',
     author='somatoko',
     author_email='',
-    url='',
+    description='Use MongoDB as Django session backend',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url='https://github.com/somatoko/django-mdbsessions',
     zip_safe=False,
+    packages=setuptools.find_packages(),
     install_requires=[
         'django >= 1.11',
         'pymongo >= 3.2.2'
@@ -30,7 +25,7 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Internet :: WWW/HTTP :: Session',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.5',
-        ],
+        'Programming Language :: Python :: 3.6',
+    ],
     keywords='django mongodb session',
 )

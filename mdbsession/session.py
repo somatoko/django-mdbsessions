@@ -13,11 +13,9 @@ class SessionStore(SessionBase):
     MongoDB backend for Django sessions.
     '''
 
-
     def get_expiration_date(self):
         s = settings.SESSION_COOKIE_AGE
         return timezone.now() - timedelta(seconds=s)
-
 
     def load(self):
         mongo_session = _store().find_one({
@@ -34,7 +32,6 @@ class SessionStore(SessionBase):
         else:
             return mongo_session['session_data']
 
-
     def exists(self, session_key):
         session = _store().find_one({
             'session_key': session_key,
@@ -48,7 +45,6 @@ class SessionStore(SessionBase):
                 self.delete(session_key)
                 return self.exists(session_key)
             return True
-
 
     def create(self):
         while True:
@@ -81,7 +77,6 @@ class SessionStore(SessionBase):
             upsert=True
         )
 
-
     def delete(self, session_key=None):
         if session_key is None:
             session_key = self._session_key
@@ -89,15 +84,12 @@ class SessionStore(SessionBase):
             return
         _store().delete_one({'session_key': session_key})
         self._session_key = None
-    
 
     def encode(self, session_dict):
         return session_dict
-    
 
     def decode(self, session_data):
         return session_data
-
 
     def set_expiry(self, value):
         raise NotImplementedError
