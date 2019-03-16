@@ -1,10 +1,10 @@
-from setuptools import setup
+import setuptools
 from os import path
 
 with open("Readme.md", "r") as fh:
     long_description = fh.read()
 
-setup(
+setuptools.setup(
     name='django-mdbsessions',
     version='0.0.2',
     author='somatoko',
